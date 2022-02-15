@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web scraping</title>
+</head>
+<body>
+    <div>
+        <ul> Most Popular </ul>
+        <h3></h3>
+    </div>
+    <script>
+        var h3 = document.querySelectorAll("h3")
+        var xhr= new XMLHttpRequest();
+        xhr.open("GET","https://cors-anywhere.herokuapp.com/https://time.com/",true);
+        xhr.setRequestHeader("Access-Control-Allow-Origin","https://time.com/");
+        xhr.responseType="document";
+
+        xhr.onload = function() {
+            if(xhr.readyState ==4 && xhr.status==200)
+            {
+                var response = xhr.responseXML.querySelectorAll("most-popular-feed__item-headline");
+                //h3[0].innerText = response.textContent;
+                //h3[1].innerText = response.textContent;
+                //h3[2].innerText = response.textContent;
+                //h3[3].innerText = response.textContent;
+                //h3[4].innerText = response.textContent;
+                console.log(response);
+            }
+        };
+        xhr.onerror = function()
+        {
+            console.error(xhr.status, xhr.statusText);
+        }
+        xhr.send();
+    </script>
+
+</body>
+</html>
